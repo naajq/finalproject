@@ -17,8 +17,11 @@ class Main_page(Base):
         super().__init__(driver)
         self.driver = driver
 
-    """Заходим на наш сайт, сверяем по значению Бургер Мания, так же делаем скриншот"""
     def authorization(self):
+        """
+            Функция авторизации на сайте, проверяем появление логотипа "Burger Mania"
+        :return:
+        """
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.get_current_url()
@@ -33,7 +36,6 @@ class Main_page(Base):
     def click_burger(self):
         """
             Каталог Бургеры
-        :return:
         """
         x = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, MainPageItem.BURGER)))
         x.click()
@@ -48,8 +50,12 @@ class Main_page(Base):
         x = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, MainPageItem.SHAWERMA)))
         x.click()
 
-    """Выбираем шаурму и отсекаем значения после нащей суммы (руб.)"""
     def click_product_shawerma(self, number):
+        """
+            Выбор шаурмы по номеру
+        :param number: Номер шаурмы на сайте
+        :return Возвращает цену выбранной шаурмы
+        """
         price = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, f"/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/div[1]/div[{number}]/div/div[1]/div[1]"))).text
         price = int(price[0:3])
 
@@ -57,8 +63,12 @@ class Main_page(Base):
         x.click()
         return price
 
-    """Выбираем бургеры, и так же отсекаем значения"""
     def click_product_burger(self, number):
+        """
+            Выбор бургера по номеру
+        :param number: Номер бургера на сайте
+        :return Возвращает цену выбранного бургера
+        """
         price = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH,f"/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/div[1]/div[{number}]/div/div[1]/div[1]"))).text
         price = int(price[0:3])
 
@@ -69,8 +79,11 @@ class Main_page(Base):
         x.click()
         return price
 
-    """Кликаем на нашу корзину"""
     def click_bucket(self):
+        """
+            Нажатие и переход в карзину
+        :return:
+        """
         x = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, BucketPageItem.BUCKET)))
         x.click()
 
