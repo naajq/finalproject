@@ -40,7 +40,7 @@ def test_select_product():
     bucket.delete_food(2)
     bucket.delete_food(3)
     price(sum_products=burger_1 + shawerma_2, progucts_count=2, driver=driver)
-    logging.info("Тест покупки пройден")
+    logging.info("Тест покупки пройденf")
 
 
 def test_input_info():
